@@ -1,0 +1,128 @@
+{% extends 'common/template.html' %}
+
+{% block title %}手游列表{% endblock %}
+
+{% block staticfile %}
+	
+	<link rel="stylesheet" type="text/css" href="/static/css/game/list.css?version={{version}}">
+
+	<script type="text/javascript" src="/static/js/game/list.js?version={{version}}"></script>
+
+{% endblock %}
+
+{% block content %}
+	
+	<div id="game-container">
+
+		<div id="game-filter">
+			<form class="layui-form" action="" method="post">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">手游厂商</label>
+						<div class="layui-input-inline">
+							<input type="text" name="publisher" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">最低评分</label>
+						<div class="layui-input-inline">
+							<input type="text" name="rating_score" lay-verify="rating_score" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<label class="layui-form-label">最低评价人数</label>
+						<div class="layui-input-inline">
+							<input type="text" name="review"  lay-verify="review" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">最低关注人数</label>
+						<div class="layui-input-inline">
+							<input type="text" name="follow"  lay-verify="review" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<label class="layui-form-label">排序方法</label>
+						<div class="layui-input-inline">
+							<select name="order">
+								<option value="">不进行排序</option>
+								<option value="-rating_score">按评分排序</option>
+								<option value="-review">按评价人数排序</option>
+								<option value="-follow">按关注人数排序</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="layui-form-itemm">
+					<div class="layui-input-block">
+						<a class="layui-btn" lay-submit lay-filter="filter">立即提交</a>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="game-list">
+			{% raw %}
+			<template v-for="game in game_list">
+				<div class="game-info layui-row">
+					<div class="game-left-board layui-col-md6">
+						<img :src="game.img">
+					</div>
+					<div class="game-right-board layui-col-md6">
+						<form class="layui-form" action="">
+							<div class="layui-form-item">
+								<label class="layui-form-label">手游名称</label>
+								<div class="layui-input-block">
+									<input type="text" readonly name="name" class="layui-input" :value="game.name">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">手游厂商</label>
+								<div class="layui-input-block">
+									<input type="text" readonly name="publisher" class="layui-input" :value="game.publisher">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">评分</label>
+								<div class="layui-input-block">
+									<input type="text" readonly name="rating_score" class="layui-input" :value="nvl(game.rating_score, '暂无评分')">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">评价人数</label>
+								<div class="layui-input-block">
+									<input type="text" readonly name="review" class="layui-input" :value="nvl(game.review, '暂无评价')">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">关注人数</label>
+								<div class="layui-input-block">
+									<input type="text" readonly name="follow" class="layui-input" :value="nvl(game.follow, '暂无关注')">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">标签</label>
+								<div class="layui-input-block">
+									<template v-for="tag in game.tags.split(',')">
+										<a class="layui-btn" :title="tag">{{tag}}</a>
+									</template>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</template>
+			{% endraw %}
+		</div>
+
+		<div id="game-paginator">
+			
+		</div>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<!-- 页面头部 -->
+	<title>{% block title %}{% endblock %}</title>
+
+	<meta name="referrer" content="no-referrer">
+
+	<link rel="stylesheet" type="text/css" href="/static/js/common/layui/css/layui.css?version={{version}}">
+
+	<script type="text/javascript" src="/static/js/common/layui/layui.all.js?version={{version}}"></script>
+	<script type="text/javascript" src="/static/js/common/jquery.min.js?version={{version}}"></script>
+	<script type="text/javascript" src="/static/js/common/vue.js?version={{version}}"></script>
+	<script type="text/javascript" src="/static/js/common/lodash.js?version={{version}}"></script>
+
+	{% block staticfile %}
+	{% endblock %}
+
+</head>
+<body>
+
+	<!-- 页面内容 -->
+	{% block content %}
+	{% endblock %}
+
+</body>
+</html>

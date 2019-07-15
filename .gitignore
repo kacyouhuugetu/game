@@ -1,0 +1,7 @@
+/__pycache__/
+*.pyc
+.idea
+runserver.py
+*.log
+job.sqlite3
+*.txt
