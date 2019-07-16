@@ -68,9 +68,9 @@
 		<div id="game-list">
 			{% raw %}
 			<template v-for="game in game_list">
-				<div class="game-info layui-row">
+				<div class="game-info layui-row" v-if="game.taptap_id">
 					<div class="game-left-board layui-col-md6">
-						<img :src="game.img">
+						<a :href="'https://www.taptap.com/app/' + game.taptap_id"><img :src="game.img"></a>
 					</div>
 					<div class="game-right-board layui-col-md6">
 						<form class="layui-form" action="">

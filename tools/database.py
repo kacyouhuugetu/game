@@ -5,6 +5,8 @@ from jinjasql import JinjaSql
 
 from sqlalchemy import create_engine, MetaData, Table, Column
 
+import cx_Oracle
+
 jinja_sql_engine = JinjaSql()
 
 __all__ = ['pooled_db_connector']
@@ -63,7 +65,7 @@ class PooledDbConnector:
 			{%- if dialect == 'sqlite' -%}
 				:///{{dbname}}
 			{%- else -%}
-				{{driver}}://{{user}}{{password}}@{{host}}/{{dbname}}
+				+{{driver}}://{{user}}:{{password}}@{{host}}:{{port}}/{{dbname}}
 			{%- endif -%}
 		"""
 

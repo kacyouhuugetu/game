@@ -18,4 +18,4 @@ def add_version():
 app.config['JSON_AS_ASCII'] = False
 
 if __name__ == '__main__':
-	app.run(host='192.168.1.84', port=8000, debug=True)
+	app.run(host='localhost', port=8888, debug=True)
